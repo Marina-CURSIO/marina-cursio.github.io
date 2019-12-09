@@ -788,9 +788,9 @@ section.lazy-placeholder:after {
   opacity: .5;
 }
 .cid-rK9v1iV6he {
-  padding-top: 90px;
+  padding-top: 60px;
   padding-bottom: 90px;
-  background-color: #efefef;
+  background-color: #c1c1c1;
 }
 .cid-rK9v1iV6he .mbr-section-subtitle {
   color: #767676;
@@ -899,4 +899,7 @@ section.lazy-placeholder:after {
 .cid-rK9v1iV6he .reverseTimeline {
   display: flex;
   flex-direction: column-reverse;
+}
+.cid-rK9v1iV6he .mbr-timeline-date {
+  color: #aa0d35;
 }
