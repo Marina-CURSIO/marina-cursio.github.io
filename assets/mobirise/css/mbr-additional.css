@@ -790,10 +790,13 @@ section.lazy-placeholder:after {
 .cid-rJYlOLdwmT .card-title {
   text-align: center;
 }
+.cid-rJYlOLdwmT .mbr-text {
+  text-align: center;
+}
 .cid-rK9v1iV6he {
   padding-top: 60px;
   padding-bottom: 90px;
-  background-color: #dddddd;
+  background-image: url("../../../assets/images/tlchargement-1-259x194.jpg");
 }
 .cid-rK9v1iV6he .mbr-section-subtitle {
   color: #767676;
