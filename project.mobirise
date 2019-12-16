@@ -28,11 +28,13 @@
         "isScrollToTopButton": false
       },
       "additionalSetColors": [
+        "#e0e0e0",
         "#aa0d35",
         "#dddddd",
         "#e5e5e5",
         "#e3e3e3",
-        "#cfcfcf"
+        "#cfcfcf",
+        "#dfdfdf"
       ]
     },
     "path": "@PROJECT_PATH@",
@@ -44,7 +46,7 @@
       }
     ],
     "versionFirst": "4.7.6",
-    "uniqCompNum": 25,
+    "uniqCompNum": 41,
     "versionPublish": "4.11.6",
     "screenshot": "screenshot.png"
   },
@@ -317,6 +319,9 @@
             },
             ".mbr-timeline-text": {
               "text-align": "center"
+            },
+            ".mbr-section-title": {
+              "color": "#f7ed4a"
             }
           },
           "_name": "timeline1",
@@ -340,34 +345,318 @@
         {
           "alias": false,
           "_styles": {
-            "background": "@bgColor",
-            "& when (@fullWidth = false)": {
-              "padding-top": "(@paddingTop * 15px)",
-              "padding-bottom": "(@paddingBottom * 15px)"
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-slider .carousel-control": {
+              "background": "#1b1b1b"
             },
-            "& when (@gradientBg)": {
-              "background": "linear-gradient(0deg, @bgColor, @color2)"
+            ".mbr-slider .carousel-control-prev": {
+              "left": "0",
+              "margin-left": "2.5rem"
             },
-            ".video-block": {
-              "margin": "auto",
-              "& when (@fullWidth)": {
-                "width": "100% !important"
+            ".mbr-slider .carousel-control-next": {
+              "right": "0",
+              "margin-right": "2.5rem"
+            },
+            ".mbr-slider .modal-body .close": {
+              "background": "#1b1b1b"
+            },
+            ".mbr-gallery-item > div::before": {
+              "content": "''",
+              "position": "absolute",
+              "left": "0",
+              "top": "0",
+              "width": "100%",
+              "height": "100%",
+              "background": "@overlayColor",
+              "opacity": "0",
+              "-webkit-transition": "0.2s opacity ease-in-out",
+              "transition": "0.2s opacity ease-in-out",
+              "& when (@gradOverlay)": {
+                "background": "linear-gradient(to left, @overlayColor, @overlayColor2) !important"
               }
             },
-            "@media (max-width: 768px)": {
-              ".video-block": {
-                "width": "100% !important"
+            ".mbr-gallery-item > div:hover": {
+              ".mbr-gallery-title::before": {
+                "background": "transparent !important"
+              },
+              "&:before": {
+                "opacity": "@overlayOpacity !important"
               }
+            },
+            ".mbr-gallery-title": {
+              "font-size": ".9em",
+              "position": "absolute",
+              "display": "block",
+              "width": "100%",
+              "bottom": "0",
+              "padding": "1rem",
+              "color": "#fff",
+              "z-index": "2",
+              "&:before": {
+                "content": "\" \"",
+                "width": "100%",
+                "height": "100%",
+                "top": "0",
+                "left": "0",
+                "z-index": "-1",
+                "position": "absolute",
+                "background": "@overlayColor !important",
+                "opacity": "@overlayOpacity",
+                "-webkit-transition": "0.2s background ease-in-out",
+                "transition": "0.2s background ease-in-out",
+                "& when (@gradOverlay)": {
+                  "background": "linear-gradient(to left, @overlayColor, @overlayColor2) !important"
+                }
+              }
+            },
+            ".mbr-gallery-item > div > span": {
+              "text-align": "center"
             }
           },
-          "_name": "video3",
-          "_customHTML": "<section group=\"Images & Videos\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n    <input type=\"checkbox\" title=\"Full Width\" name=\"fullWidth\">\n\n    <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" value=\"4\" step=\"1\" condition=\"fullWidth==false\">\n    <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" value=\"4\" step=\"1\" condition=\"fullWidth==false\">\n    <input type=\"range\" inline title=\"Width\" name=\"videoSize\" min=\"20\" max=\"100\" value=\"80\" step=\"1\" condition=\"fullWidth==false\">\n\n    <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#149dcc\" condition=\"fullWidth==false\">\n    <input type=\"checkbox\" title=\"Gradient\" name=\"gradientBg\" checked condition=\"fullWidth==false\">\n    <input type=\"color\" title=\"Color 2\" name=\"color2\" value=\"#ffffff\" condition=\"gradientBg\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n    \n    <figure class=\"mbr-figure align-center\" mbr-class=\"{'container':fullWidth==false}\">\n        <div class=\"video-block\" mbr-style=\"{'width':videoSize+'%'}\">\n            <div mbr-video>\n                <iframe src=\"https://www.youtube.com/watch?v=NfaeoCORuzk&loop=0&autoplay=0\"></iframe>\n            </div>\n        </div>\n    </figure>\n</section>",
-          "_cid": "rKy6GFypwI",
-          "_anchor": "video3-k",
-          "_protectedParams": [],
+          "_name": "gallery2",
+          "_customHTML": "<section class=\"mbr-gallery mbr-slider-carousel\" group=\"Sliders & Gallery\" plugins=\"Masonry,BootstrapCarouselSwipe,Gallery,VimeoPlayer,SliderVideo\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"checkbox\" title=\"Full Width\" name=\"fullWidth\">\n        <input type=\"range\" title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"9\" step=\"1\" value=\"6\" inline>\n        <input type=\"range\" title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"9\" step=\"1\" value=\"3\" inline>\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#554346\">\n        <input type=\"checkbox\" title=\"Gradient Overlay\" name=\"gradOverlay\">\n        <input type=\"color\" title=\"Overlay Color 2\" name=\"overlayColor2\" value=\"#45505b\" condition=\"gradOverlay\">\n        <input type=\"range\" title=\"Overlay Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.7\" inline>\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#dfdfdf\">\n\n        <input type=\"gallery\" title=\"Gallery\" name=\"gallery\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div mbr-class=\"{'container': !fullWidth}\">\n        <div mbr-gallery=\"gallery\" mbr-gallery-spacing=\"6\" mbr-gallery-show-text mbr-gallery-show-bullets></div>\n    </div>\n\n</section>",
+          "_cid": "rKPyVvWpIf",
+          "_anchor": "gallery2-q",
+          "_protectedParams": [
+            "text_all",
+            "gallery__filtersTextStyle",
+            "gallery__filtersBtnStyle",
+            "gallery"
+          ],
           "_global": false,
           "_once": false,
-          "_params": {}
+          "_params": {
+            "text_all": "All",
+            "gallery__filtersTextStyle": "display-7",
+            "gallery__filtersBtnStyle": "btn-primary-outline",
+            "gallery": [
+              {
+                "tags": "Impressionnant",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<b><i><a href=\"page6.html\" class=\"text-primary\">&nbsp;ARTICLE 1&nbsp;</a></i></b><br>",
+                "active": true
+              },
+              {
+                "tags": "Adaptatif",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<i><b><a href=\"page5.html\" class=\"text-primary\">ARTICLE 2</a></b></i>",
+                "active": false
+              },
+              {
+                "tags": "Créatif",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<i><b><a href=\"page7.html\" class=\"text-primary\">ARTICLE 3</a></b></i>",
+                "active": false
+              },
+              {
+                "tags": "Animé",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<b><i><a href=\"page8.html\" class=\"text-primary\">ARTICLE 4</a></i></b>",
+                "active": false
+              },
+              {
+                "tags": "Impressionnant",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<i><b><a href=\"page4.html#content4-v\" class=\"text-primary\">ARTICLE 5</a></b></i>",
+                "active": false
+              },
+              {
+                "tags": "Impressionnant",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<i><b><a href=\"page9.html\" class=\"text-primary\">ARTICLE 6</a></b></i><br>",
+                "active": false
+              },
+              {
+                "tags": "Adaptatif",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<b><i><a href=\"page10.html\" class=\"text-primary\">ARTICLE 7</a></i></b><br>",
+                "active": false
+              },
+              {
+                "tags": "Animé",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<b><i><a href=\"page11.html\" class=\"text-primary\">ARTICLE 8</a></i></b><br>",
+                "active": false
+              }
+            ]
+          }
+        },
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-slider .carousel-control": {
+              "background": "#1b1b1b"
+            },
+            ".mbr-slider .carousel-control-prev": {
+              "left": "0",
+              "margin-left": "2.5rem"
+            },
+            ".mbr-slider .carousel-control-next": {
+              "right": "0",
+              "margin-right": "2.5rem"
+            },
+            ".mbr-slider .modal-body .close": {
+              "background": "#1b1b1b"
+            },
+            ".mbr-gallery-item > div::before": {
+              "content": "''",
+              "position": "absolute",
+              "left": "0",
+              "top": "0",
+              "width": "100%",
+              "height": "100%",
+              "background": "@overlayColor",
+              "opacity": "0",
+              "-webkit-transition": "0.2s opacity ease-in-out",
+              "transition": "0.2s opacity ease-in-out",
+              "& when (@gradOverlay)": {
+                "background": "linear-gradient(to left, @overlayColor, @overlayColor2) !important"
+              }
+            },
+            ".mbr-gallery-item > div:hover": {
+              ".mbr-gallery-title::before": {
+                "background": "transparent !important"
+              },
+              "&:before": {
+                "opacity": "@overlayOpacity !important"
+              }
+            },
+            ".mbr-gallery-title": {
+              "font-size": ".9em",
+              "position": "absolute",
+              "display": "block",
+              "width": "100%",
+              "bottom": "0",
+              "padding": "1rem",
+              "color": "#fff",
+              "z-index": "2",
+              "&:before": {
+                "content": "\" \"",
+                "width": "100%",
+                "height": "100%",
+                "top": "0",
+                "left": "0",
+                "z-index": "-1",
+                "position": "absolute",
+                "background": "@overlayColor !important",
+                "opacity": "@overlayOpacity",
+                "-webkit-transition": "0.2s background ease-in-out",
+                "transition": "0.2s background ease-in-out",
+                "& when (@gradOverlay)": {
+                  "background": "linear-gradient(to left, @overlayColor, @overlayColor2) !important"
+                }
+              }
+            },
+            ".mbr-gallery-item > div > span": {
+              "text-align": "center"
+            }
+          },
+          "_name": "gallery2",
+          "_customHTML": "<section class=\"mbr-gallery mbr-slider-carousel\" group=\"Sliders & Gallery\" plugins=\"Masonry,BootstrapCarouselSwipe,Gallery,VimeoPlayer,SliderVideo\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"checkbox\" title=\"Full Width\" name=\"fullWidth\">\n        <input type=\"range\" title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"9\" step=\"1\" value=\"0\" inline>\n        <input type=\"range\" title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"9\" step=\"1\" value=\"6\" inline>\n        <input type=\"color\" title=\"Overlay Color\" name=\"overlayColor\" value=\"#554346\">\n        <input type=\"checkbox\" title=\"Gradient Overlay\" name=\"gradOverlay\">\n        <input type=\"color\" title=\"Overlay Color 2\" name=\"overlayColor2\" value=\"#45505b\" condition=\"gradOverlay\">\n        <input type=\"range\" title=\"Overlay Opacity\" name=\"overlayOpacity\" min=\"0\" max=\"1\" step=\"0.1\" value=\"0.7\" inline>\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#e0e0e0\">\n\n        <input type=\"gallery\" title=\"Gallery\" name=\"gallery\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div mbr-class=\"{'container': !fullWidth}\">\n        <div mbr-gallery=\"gallery\" mbr-gallery-spacing=\"6\" mbr-gallery-show-text></div>\n    </div>\n\n</section>",
+          "_cid": "rKPKSn2O2l",
+          "_anchor": "gallery2-u",
+          "_protectedParams": [
+            "text_all",
+            "gallery__filtersTextStyle",
+            "gallery__filtersBtnStyle",
+            "gallery"
+          ],
+          "_global": false,
+          "_once": false,
+          "_params": {
+            "text_all": "All",
+            "gallery__filtersTextStyle": "display-7",
+            "gallery__filtersBtnStyle": "btn-primary-outline",
+            "gallery": [
+              {
+                "tags": "Adaptatif",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<i><b><a href=\"page12.html\" class=\"text-primary\">ARTICLE 9</a></b></i>",
+                "active": true
+              },
+              {
+                "tags": "Animé",
+                "videoPreview": "@THEME_PATH@/components/_images/gallery/preview.jpg",
+                "playVideo": false,
+                "videoUrl": "https://www.youtube.com/watch?v=fwkKc6M60-0",
+                "image": "@PROJECT_PATH@/assets/images/tlchargement-259x194.jpg",
+                "thumb": "@PROJECT_PATH@/assets/images/tlchargement-259x194-259x194.jpg",
+                "alt": "",
+                "title": "",
+                "customStyle1": "display-7",
+                "caption": "<i><b><a href=\"page13.html\" class=\"text-primary\">ARTICLE 10</a></b></i><br>",
+                "active": false
+              }
+            ]
+          }
         }
       ]
     },
@@ -434,18 +723,303 @@
     "page4.html": {
       "settings": {
         "meta_descr": "Web Page Builder Description",
-        "title": "Page 4",
-        "order": 4
+        "title": "ARTICLE 5",
+        "order": 7
       },
-      "components": []
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            },
+            ".mbr-section-subtitle DIV": {
+              "text-align": "left"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\"><i><b>PASSAGE À 80KM/H : UNE BAISSE QUASI-IMMÉDIATE DE 7% DES ÉMISSIONS DE GAZ À EFFET DE SERRE ATTENDUE EN FRANCE\n</b></i></h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\"><a href=\"http://www.fondation-nature-homme.org/magazine/passage-80kmh-une-baisse-quasi-immediate-de-7-des-emissions-de-gaz-effet-de-serre-attendue\">http://www.fondation-nature-homme.org/magazine/passage-80kmh-une-baisse-quasi-immediate-de-7-des-emissions-de-gaz-effet-de-serre-attendue</a>\n<div><br></div><div>A partir du 1er juillet 2018, la vitesse maximale autorisée sur le réseau de routes secondaires sera abaissée à 80km/h. Si le sujet fait polémique, cette mesure répond pourtant à un fouble enjeu :</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;un enjeu de sécurité routière, près d'un tiers des accidents mortels étant dus à une vitesse excessive ;</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;un enjeu de lutte le changement climatique en réduisant les émissions de gaz à effet de serre et de santé publique en agissant sur la pollution atmosphérique.</div><br><div>En ne considérant que les voitures particulières, cette nouvelle réglementation devrait entraîner la baisse quasi immédiate des émissions de l'ensemble des gaz à effet de serre d'environ 7% (12,5% pour le CO2 seul). Cette baisse pourrait atteindre jusqu'à 20% pour les particules fines type PM10 et l'oxyde d'azote.\n</div><div>Conduire moins vite permet de réduire sa consommation de carburant, et donc de rejeter moins de CO2, principal gaz à effet de serre responsable du changement climatique. La réduction de vitesse fera économiser l'équivalent de 450 000 tonnes de pétrole par an. En considérant qu'une partie des usagers du réseau routier secondaire roule déjà à moins de 90km/h, c'est une mesure devrait déboucher sur environ 1 million de tonnes de CO2 en moins émis chaque année dans l'atmosphère. A l'horizon 2030, ce sont plus de 12 millions de tonnes de CO2 qui devrait ainsi être évitées.</div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPNjqtgEJ",
+          "_anchor": "content4-v",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {}
+        }
+      ]
     },
     "page5.html": {
       "settings": {
         "meta_descr": "Website Generator Description",
-        "title": "Page 5",
+        "title": "ARTICLE 2",
+        "order": 4
+      },
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\"><b><i>Moyens mis en oeuvre au niveau mondial?\n</i></b></h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\"><div>\n<span style=\"font-size: 1.5rem;\">&nbsp;&nbsp;</span></div><div>Les premières initiatives internationales de lutte contre le phénomène se traduisent par l’adoption de deux textes importants : la convention-cadre des Nations Unies sur les changements climatiques ou convention climat de 1992 et le protocole de Kyoto de 1997.\n</div><div>&nbsp;\n</div><div>1- Adoptée en 1992 et entrée en vigueur en 1994, la convention représente le premier texte international autour de la protection de l’environnement ayant reconnu l’existence du réchauffement climatique. Elle se fixe comme objectif la stabilisation des gaz à effet de serre dans l’atmosphère à un niveau empêchant « toute perturbation anthropique dangereuse du climat ». Pour atteindre cette finalité, les États membres à la convention se doivent d’appliquer un certain nombre d’obligations :\n</div><div>&nbsp;Établir des inventaires nationaux des émissions des gaz.\n</div><div>&nbsp;Mettre en œuvre des politiques nationales pour réduire leurs émissions ainsi que les mesures visant à faciliter l’adaptation de ces politiques.\n</div><div>&nbsp;Encourager la gestion rationnelle et le renforcement des puits et des réservoirs \n</div><div>&nbsp;Coopérer pour préparer l’adaptation à l’impact du changement climatique.\n</div><div>&nbsp;\n</div><div>Les pays développés sont davantage sollicités dans la démarche de lutte contre le phénomène ; la convention leur réserve des engagements spécifiques :\n</div><div>&nbsp;Adopter des politiques nationales pour ramener leurs émissions de gaz à effet de serre en 2000 à leur niveau de 1990.\n</div><div>&nbsp;Aider les pays en voie de développement particulièrement vulnérables à faire face au coût de leur adaptation.\n</div><div>&nbsp;Fournir des ressources financières aux pays en développement pour remplir leurs engagements, notamment sur les inventaires.\n</div><div>&nbsp;Encourager, financer et faciliter selon les besoins, le transfert ou l’accès aux technologies et de savoir-faire écologiquement rationnels. \n</div><div>&nbsp;\n</div><div>Les objectifs ambitieux avancés par la convention se trouvent handicapés par la nature non contraignante de celle-ci. Aucun mécanisme de sanction n’est prévu envers l’État qui ne respecte pas les engagements ci-dessus cités.\n</div><div>&nbsp;\n</div><div>&nbsp;\n</div><div>&nbsp;\n</div><div>2- Signé en 1997 et entré en vigueur en février 2005, le protocole de Kyoto est un accord interétatique fixant des seuils de réduction des gaz à effet de serre à respecter par les différents États signataires. Principal texte d’application de la convention-cadre des Nations Unies sur les changements climatiques, le texte devait répondre aux trois principes de base de la convention : le principe de précaution imposant de prendre des mesures face au réchauffement de la planète, ensuite celui du droit à environnement sain et enfin, le principe d’une responsabilité commune, mais différenciée des États face au dérèglement climatique.\n</div><div>Les objectifs de réduction ont été fixés en fonction des projections de croissance des émissions dans chaque pays, de sa capacité à payer et de son engagement politique dans la lutte contre le changement climatique. \n</div><div>Le protocole a été ratifié par 175 pays qui se sont engagés pour atteindre, en 2012, une réduction de leurs émissions de gaz à effet de serre d’environ 5 % par rapport aux émissions répertoriées en 1990. Tous les pays développés n’ont pas manifesté la même volonté d’agir. Ainsi l’Union européenne des 15 a arrêté un objectif collectif de réduction de 8 % réparti sur les différents États : ainsi l’Allemagne a un objectif de réduction de 21 % alors que l’Espagne peut augmenter ses émissions de 15 %. Le Japon ne s’est engagé que pour une baisse de 5 %.\n</div><div>Mais son efficacité est limite, principalement par l’absence des USA dans cet accord.\n</div><div>Cet accord prend fin en 2013 et est suivi par d’autres projets.\n</div><div>&nbsp;\n</div><div>La conférence de Bali de 2007 a permis de lancer officiellement les négociations sur l’après-Kyoto et de décider d’un nouveau sommet sur le changement climatique, celui de Copenhague, en décembre 2009 \n</div><div><br></div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPSXudRF7",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-x"
+        }
+      ]
+    },
+    "page6.html": {
+      "settings": {
+        "meta_descr": "Web Site Creator Description",
+        "title": "ARTICLE 1",
+        "order": 3
+      },
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            },
+            ".mbr-section-subtitle DIV": {
+              "text-align": "left"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\"><b><i>Moyens mis en oeuvre au niveau européen?</i></b></h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\">\n                    \n                <div><br></div><div>\n</div><div>\n</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<a href=\"https://www.consilium.europa.eu/fr/policies/climate-change/\" target=\"_blank\">https://www.consilium.europa.eu/fr/policies/climate-change/</a></div><br><div>\n</div><div>\n</div><div>Signature de l’accord de Paris: « objectif de maintenir l’élévation de la température de la planète nettement en dessous de 2°C et de poursuivre l’action menée pour limiter cette hausse à 1,5°C. »\n</div><div>Assignation d’objectifs pour la réduction d’émission de gaz à effets de serre:</div><br><div>Pour 2020, les objectifs ont été signés en 2008, il fixent une réduction des émissions de gaz à effets de serre de 20% par rapport au niveaux de 1990. Ils veulent faire passer la part des énergies renouvelables à 20%. Améliorer l’efficacité énergétique de 20%.&nbsp;<span style=\"font-size: 1rem;\">Pour cela l’UE à ultérieurement adopté et réformé le système d’échanges de quotas&nbsp;</span><span style=\"font-size: 1rem;\">d’émissions de l’UE pour réduire les gazs à effets de serre.&nbsp;</span><span style=\"font-size: 1rem;\">En 2017 les émissions de GàES avaient été réduits de 22% soit 2% de plus que l’objectif&nbsp;</span><span style=\"font-size: 1rem;\">initial de 20%.</span></div><div><span style=\"font-size: 1rem;\"><br></span></div><div>\n</div><div>Pour 2030, en 2014 ils ont adoptés le cadre d’action en matière de climat et d’énergie. En fixant ces objectifs l’UE c’est engagé à réduire ses émissions de GàES d’au moins 40% par rapport au niveau de 1990.</div><br><div><span style=\"font-size: 1rem;\">Actions récentes:</span></div><div>Les objectifs adoptés, l’un a mis en place des actions et mesures visant à assurer leur réalisations.</div><div>&nbsp; &nbsp;Mai 2018: gestion des déchets et recyclage</div><div><span style=\"font-size: 1rem; text-align: center;\">&nbsp; &nbsp;Décembre 2018: efficacité énergétique, énergies renouvelables, énergie propre</span></div><div>\n</div><div>&nbsp; &nbsp;Avril 2019: normes d’émissions du CO2 plus strictes pour voiture et camionnette</div><div><span style=\"font-size: 1rem; text-align: center;\">&nbsp; &nbsp;Mai 2019: interdiction des plastiques à usage unique</span></div><div>\n</div><div>&nbsp; &nbsp;Juin 2019: norme d’émission du CO2 pour les poids lourds</div><div>\n</div><div>&nbsp; &nbsp;Novembre 2018: communication pour une planète propre, avec des scénarios pour une &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;économie prospère, moderne, compétitive et neutre pour le climat d’ici 2050.\n</div><div>\n</div><div><br></div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPRwUEeep",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-w"
+        }
+      ]
+    },
+    "page7.html": {
+      "settings": {
+        "meta_descr": "Web Maker Description",
+        "title": "ARTICLE 3",
         "order": 5
       },
-      "components": []
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            },
+            ".mbr-section-subtitle DIV": {
+              "text-align": "left"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\"><b><i>\n                    la course contre le rechauffement climatique</i></b></h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\">\n                    <a href=\"https://www.undp.org/content/undp/fr/home/sustainable-development-goals/goal-13-climate-action.html\">https://www.undp.org/content/undp/fr/home/sustainable-development-goals/goal-13-climate-action.html\n                </a><div>&nbsp;\n</div><div>Les experts ont tiré la sonnette d’alarme. Si la tendance au réchauffement climatique se poursuit, les températures de notre planète pourraient augmenter de 3 à 5 °C par rapport au niveau préindustriel d’ici 2100. Dans ces conditions il serait extrêmement difficile, voire impossible de maintenir la vie sur Terre. Pour échapper à ce scénario, 195 pays ont signé l’Accord de Paris en 2015. L’accord prévoit des mesures claires pour réduire les émissions de carbone, atténuer les risques liés aux changements climatiques et maintenir la température de la planète bien en deçà de 2 °C. Pour rappel, la limite recommandée par les scientifiques est de +1,5 °C.\n</div><div>Quatre ans après l’accord, force est de constater que très peu de pays sont encore dans la course pour limiter le réchauffement climatique à une température sûre. Mais certains prennent des initiatives ambitieuses pour faire face aux pires impacts du changement climatique.\n</div><div>&nbsp;\n</div><div>Les politiques du Bhoutan sont jugées “compatibles” avec un monde en dessous de 2 °C et le pays a déjà atteint la neutralité carbone. Ce petit pays moins développé a pu atteindre l’objectif de zéro émission de CO2 grâce au programme de reboisement du pays.\n</div><div><br></div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPWUHGQgt",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-13"
+        }
+      ]
+    },
+    "page8.html": {
+      "settings": {
+        "meta_descr": "Website Generator Description",
+        "title": "ARTICLE 4",
+        "order": 6
+      },
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-2\">\n                    Article Titre avec Fond Uni\n                </h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\">\n                    <a href=\"https://unfccc.int/fr/process-and-meetings/l-accord-de-paris/qu-est-ce-que-l-accord-de-paris\">https://unfccc.int/fr/process-and-meetings/l-accord-de-paris/qu-est-ce-que-l-accord-de-paris</a>\n                <div>&nbsp;\n</div><div>L’accord de paris:\n</div><div>Lors de la COP21 à Paris, le 12 décembre 2015, les Parties à la CCNUCC sont parvenues à un accord historique pour lutter contre le changement climatique et pour accélérer et intensifier les actions et les investissements nécessaires à un avenir durable à faible intensité de carbone. L'Accord de Paris s'appuie sur la Convention\n</div><div>L'objectif central de l'Accord de Paris est de renforcer la réponse mondiale à la menace du changement climatique en maintenant l'augmentation de la température mondiale à un niveau bien inférieur à 2 degrés Celsius par rapport aux niveaux préindustriels et de poursuivre les efforts pour limiter encore davantage l'augmentation de la température à 1,5 degré Celsius. En outre, l'accord vise à accroître la capacité des pays à faire face aux impacts du changement climatique et à rendre les flux financiers compatibles avec un faible niveau d'émissions de GES et une voie résiliente au climat. Pour atteindre ces objectifs ambitieux, une mobilisation et une affectation appropriées de ressources financières, un nouveau cadre technologique et un renforcement des capacités doivent être mis en place, appuyant ainsi l'action des pays en développement et des pays les plus vulnérables, conformément à leurs propres objectifs nationaux. L'Accord prévoit également un cadre de transparence accrue pour l'action et le soutien.\n</div><div>&nbsp;\n</div><div>Objectif à long terme en matière de température - L'Accord de Paris, vise à renforcer la riposte mondiale à la menace des changements climatiques, notamment en contenant l’élévation de la température moyenne de la planète nettement en dessous de 2°C par rapport aux niveaux préindustriels et en poursuivant l’action menée pour limiter l’élévation de la température à 1,5°C par rapport aux niveaux préindustriels.\n</div><div>Plafonnement mondial des émissions et \"neutralité climatique\" - les Parties cherchent à parvenir au plafonnement mondial des émissions de gaz à effet de serre dans les meilleurs délais, étant entendu que le plafonnement prendra davantage de temps pour les pays en développement. De façon à parvenir à un équilibre entre les émissions anthropiques par les sources et les absorptions anthropiques par les puits de gaz à effet de serre au cours de la deuxième moitié du siècle, sur la base de l’équité, et dans le contexte du développement durable et de la lutte contre la pauvreté.\n</div><div>Atténuation– L'Accord de Paris établit un engagement contraignant de toutes les Parties à préparer, communiquer et maintenir une contribution déterminée au niveau national (CDN) et à prendre des mesures nationales pour y parvenir. Les pays développés Parties devraient continuer de montrer la voie en assumant des objectifs de réduction des émissions en chiffres absolus à l’échelle de l’économie, tandis que les pays en développement Parties devraient continuer d’accroître leurs efforts d’atténuation, et sont encouragés à passer progressivement à des objectifs de réduction ou de limitation des émissions à l’échelle de l’économie eu égard aux différentes situations nationales.\n</div><div>Puits et réservoirs – L'Accord de Paris encourage également les Parties à prendre des mesures pour conserver et, le cas échéant, renforcer les puits et réservoirs de gaz à effet de serre, notamment les forêts.\n</div><div>Coopération volontaire/Démarches fondées et non fondées sur le marché - L'Accord de Paris reconnaît la possibilité d'une coopération volontaire entre les Parties. \n</div><div>Adaptation \n</div><div>Pertes et préjudices  - L'Accord de Paris reconnaît qu'il importe de prévenir, de limiter au maximum et de remédier aux pertes et préjudices liés aux effets néfastes du changement climatique \n</div><div>Les Parties doivent améliorer leur compréhension, leur action et leur appui, notamment par l'intermédiaire du Mécanisme international de Varsovie, dans un esprit de coopération et de façon constructive par rapport aux pertes et préjudices liés aux effets néfastes du changement climatique.\n</div><div>Appui au financement, à la technologie et au renforcement des capacités - L'Accord de Paris réaffirme l'obligation des pays développés d'appuyer les efforts des pays en développement Parties pour construire un avenir propre et résilient aux changements climatiques, tout en encourageant pour la première fois les contributions volontaires des autres Parties. \n</div><div>L'éducation changement climatique, la formation, la sensibilisation du public, sa participation et l'accès à l'information - doivent également être renforcés dans le cadre de l’Accord.\n</div><div>Transparence, mise en œuvre et respect des dispositions - L'Accord de Paris s'appuie sur un système de transparence et de comptabilité solide pour définir clairement l'action et le soutien des Parties, en tenant compte de leurs aptitudes différentes. \n</div><div>Bilan mondial  - Un \"bilan mondial\", qui aura lieu en 2023 et tous les cinq ans par la suite, évaluera les progrès réalisés collectivement vers la réalisation de l'objectif de l'Accord d'une manière globale axée sur la facilitation. Il s'appuiera sur les meilleures données scientifiques disponibles et sur son objectif mondial à long terme. Ses résultats aideront les Parties à actualiser et à renforcer leurs mesures et à appuyer et renforcer la coopération internationale en matière d’action climatique.\n</div><div>La Décision 1/CP.21 énonce également un certain nombre de mesures visant à renforcer l'action avant 2020, notamment le renforcement du processus d'examen technique, l'amélioration de l’octroi d'un financement, d'une technologie et d'un appui d'urgence et des mesures visant à renforcer l'engagement de haut niveau. Pour 2018, un dialogue de facilitation est envisagé pour faire le point sur les progrès collectifs accomplis dans la réalisation de l'objectif à long terme de réduction des émissions visé à l'article 4. La décision salue également les efforts déployés par toutes les parties prenantes non-Parties pour faire face aux changements climatiques et y répondre, dont ceux de la société civile, du secteur privé, des institutions financières, des villes et autres autorités régionales. Ces acteurs sont invités à intensifier leurs efforts et à les mettre en valeur par le biais de la Zone des acteurs non étatiques pour l'action climatique (portail NAZCA). Les Parties ont également reconnu la nécessité de renforcer les connaissances, les technologies, les pratiques et les efforts des communautés locales et des peuples autochtones, ainsi que le rôle important que jouent les mesures d'incitation grâce à des outils tels que les politiques nationales et la tarification du carbone.</div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPXxIk8e6",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-14"
+        }
+      ]
+    },
+    "page9.html": {
+      "settings": {
+        "meta_descr": "Web Page Builder Description",
+        "title": "ARTICLE 6",
+        "order": 8
+      },
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            },
+            ".mbr-section-subtitle DIV": {
+              "text-align": "left"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\"><b><i>CLIMAT : L’UE S’ENGAGE À ATTEINDRE LA NEUTRALITÉ CARBONE POUR 2050</i></b>&nbsp;</h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\">\n                    <a href=\"https://www.20minutes.fr/planete/2674019-20191213-climat-union-europeenne-engage-atteindre-neutralite-carbone-2050-pologne\">https://www.20minutes.fr/planete/2674019-20191213-climat-union-europeenne-engage-atteindre-neutralite-carbone-2050-pologne</a><br><div><br></div><div>\n</div><div>L’Union européenne veut envoyer un signal fort, en pleine COP25. L’UE s’engage à devenir neutre sur le plan climatique d’ici 2050, malgré le refus de la Pologne, qu’elle n’a pas réussi à convaincre.\n</div><div>« Nous sommes arrivés à un accord sur le changement climatique, c’est très important, c’est crucial », a lancé le président du Conseil européen Charles Michel lors d’une conférence de presse. Pour son baptême du feu à la tête du cénacle des dirigeants européens, le Belge a été confronté à une discussion difficile. Sa décision d’annoncer un accord malgré l’absence de consensus a surpris même si la Pologne n’est pas allée jusqu’à bloquer l’adoption des conclusions du sommet. Le dirigeant, et à ses côtés la présidente de la Commission européenne Ursula von der Leyen, ont essayé de minimiser le délai accordé à la Pologne jusqu’en juin.\n</div><div><br></div><br><div>Un coût « plus élevé » pour la Pologne\n</div><div>Le Conseil européen a « endossé » l’objectif de neutralité climatique d’ici 2050, mais il est noté dans les conclusions qu’un Etat membre « à ce stade ne peut pas s’engager à mettre en œuvre cet objectif en ce qui le concerne ».\n</div><div>Selon plusieurs sources, Varsovie avait demandé de pouvoir s’engager pour une date postérieure à 2050 – 2070 a été évoqué –, ce qui lui a été refusé. « Nous comprenons que (la Pologne) a besoin de plus de temps », a expliqué Charles Michel. Le pays, encore très dépendant du charbon, est l’un des principaux pollueurs en Europe, et craint une transition énergétique désastreuse sur le plan économique et social.\n</div><div>En arrivant au Conseil, le Premier ministre polonais Mateusz Morawiecki avait affirmé que le coût de la transformation énergétique dans son pays était « de loin plus élevé » que dans d’autres pays.\n</div><div><br></div><br><div>Plusieurs pays réfractaires\n</div><div>A l’entame du sommet, Varsovie n’était pas le seul pays récalcitrant. La Hongrie et la République tchèque affichaient aussi leur scepticisme, exigeant des garanties financières, mais également sur les moyens d’atteindre cet objectif climatique, y compris grâce au nucléaire. Inacceptable pour des pays comme l’Autriche ou le Luxembourg, cette référence à l’atome était défendue par les trois capitales de l’Est. Les autres dirigeants ont fini par céder et par en faire mention dans les conclusions. Une reconnaissance importante car elle ouvre la voie à des aides et subventions. Le Premier ministre tchèque Andrej Babis s’est félicité d’avoir « convaincu » ses homologues que « l’énergie nucléaire est notre voie vers la neutralité climatique ».\n</div><div>Le fait que la Pologne reste en dehors est « complètement acceptable », a assuré Ursula von der Leyen. « Cet objectif (de neutralité) engagera l’UE dans son ensemble », assure-t-on à l’Elysée. Aux autres pays de convaincre Varsovie de se rallier l’été prochain.\n</div><div><br></div><br><div>Plusieurs lois à venir\n</div><div>Si le reste de l’UE se montre compréhensif, Ursula von der Leyen a toutefois assuré, au lendemain de la présentation du Pacte vert européen, que « cela ne changerait pas le calendrier de la Commission ». Cette feuille de route vise à mettre l’UE sur les rails de la neutralité climatique à l’horizon du milieu du siècle, au travers de diverses législations et plans d’actions dans des secteurs variés.\n</div><div>D’ici juin, la Commission aura présenté plusieurs actes législatifs, a souligné la chancelière allemande Angela Merkel. En particulier, la grande « loi climatique » européenne, dans laquelle la Commission compte inscrire l’objectif 2050, qui doit être présenté d’ici mars.\n</div><div><br></div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPWb87yQy",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-12"
+        }
+      ]
+    },
+    "page10.html": {
+      "settings": {
+        "meta_descr": "Site Maker Description",
+        "title": "ARTICLE 7",
+        "order": 9
+      },
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            },
+            ".mbr-section-subtitle DIV": {
+              "text-align": "left"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\"><b><i>Plan climat dévoilé le 6 juillet 2017 se fixe désormais l’objectif de la neutralité carbone à l’horizon 2050, afin de contenir le réchauffement climatique en dessous de 2°C.\n</i></b></h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\">\n                    <a href=\"https://www.vie-publique.fr/eclairage/19383-la-politique-de-la-france-face-au-changement-climatique-le-plan-climat\">https://www.vie-publique.fr/eclairage/19383-la-politique-de-la-france-face-au-changement-climatique-le-plan-climat</a>\n                <div>\n</div><div><br></div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1- amélioration des pratiques énergétiques\n</div><div>réduire la consommation énergétique et les émissions de CO2 dans les secteurs les plus énergivores. Des mécanismes d'aide financière sont mis en place pour encourager et accompagner particuliers et PME dans cet effort.\n</div><div>Quatre mesures importantes, présentées le 19 septembre 2017, s’inscrivent dans la dimension solidaire du Plan climat : Le Paquet prévoit ainsi la généralisation de la prime à la conversion des véhicules depuis le 1er janvier 2018, l’extension du chèque-énergie en 2018 pour 4 millions de ménages, un crédit d’impôt pour la transition énergétique et une aide au changement des chaudières au fioul.\n</div><div>\n</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2- L’objectif de la neutralité carbone est de décarboner la production d’énergie. Il implique l’interdiction de tout nouveau projet d’exploration d’hydrocarbures et un renforcement de la fiscalité écologique qui permette de donner au carbone son “véritable” prix\n</div><br><div>loi du 30 décembre 2017\n&nbsp;<span style=\"font-size: 1rem;\">met fin à la recherche ainsi qu’à l’exploitation des hydrocarbures conventionnels et non conventionnels + amorce la sortie progressive et irréversible de la production de pétrole et de gaz sur le territoire français à l’horizon 2040 + interdiction de la recherche et de l’exploitation des hydrocarbures non conventionnels + interdiction de la vente des voitures à essence ou à diesel, ainsi que l’arrêt progressif de l’utilisation du charbon.&nbsp;</span></div><div>&nbsp;&nbsp;&nbsp;&nbsp;=&gt; France ne parvient pas à atteindre ses objectifs de réduction des gaz à effet de serre\n</div><div>\n</div><div>accord-cadre : entre le ministère de l’Europe et des Affaires étrangères et l’organisation des Nations unies pour l’alimentation et l’agriculture (FAO) a été signé le 15 décembre 2017 pour la période 2018-2021. Objectif : soutenir la transition vers des systèmes agricoles et alimentaires durables\n</div><div>\n</div><div>Plan climat prévoit de mettre fin à la “déforestation importée”, c’est-à-dire à l’importation de produits (comme l’huile de palme ou le soja non durable) qui conduisent à la destruction des trois grandes forêts du monde (Amazonie, Asie du Sud-Est et Bassin du Congo).\n</div><div>\n</div><div>engagement de la mobilisation de 100 milliards de dollars par an par les pays développés, de source publique et privée, formulé lors de la conférence de Copenhague en 2009 et repris par l’Accord de Paris, devait permettre aux pays en développement de lutter contre le dérèglement climatique tout en favorisant un développement durable et juste. En septembre 2017, les engagements concrets ne se sont élevés qu’à 10,3 milliards de dollars.\n</div><div>\n</div><div>\n</div><div>One Planet Summit: réunissant 127 États sur la lutte contre le réchauffement climatique par le biais de la finance publique et privée.\n</div><div>\n</div><div>70 coalitions internationales issues de la diplomatie climatique ont été lancées depuis la France. Thématiques, ces coalitions prennent la forme d’une mutualisation des compétences, des financements et des savoir-faire de la part des entreprises, des gouvernements, des banques de développement, des institutions internationales afin d’amplifier les initiatives lancées lors de la COP21. \n</div><div><br></div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPUhHbRLY",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-y"
+        }
+      ]
+    },
+    "page11.html": {
+      "settings": {
+        "meta_descr": "Web Page Builder Description",
+        "title": "ARTICLE 8",
+        "order": 10
+      },
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            },
+            ".mbr-section-subtitle DIV": {
+              "text-align": "left"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\"><i><b>C</b></i><b><i>OP21 et Accord de Paris&nbsp;</i></b></h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\">\n                    <a href=\"https://www.apc-paris.com/changement-climatique\">https://www.apc-paris.com/changement-climatique\n                </a><div>\n</div><div>&nbsp;COP21 et Accord de Paris adopté par 195 pays (parmi les plus gros émetteurs de CO2 comme les Etats-Unis, le Canada, la Chine ou l’Australie) : réduire les émissions de GES et de limiter à 2°C, voire 1,5°C, le réchauffement d’ici à 2100\n</div><div>protection des biens et des personnes (plan canicule, plan inondation, lutte contre la précarité énergétique…) + entretien et la préservation du patrimoine naturel (forêts, dunes, digues…) ou l’aménagement de l’espace urbain (ordonnancement urbain et bâti ; fontaines et points de rafraîchissement, espaces verts et végétalisation…)\n</div><div>2000 : premier programme de lutte contre le réchauffement climatique\n</div><div>2004 : premier plan climat : naissance des plans climat-énergie territoriaux (PCET)\n</div><div>2005 : objectif facteur 4 : division par 4 des émissions de GES entre 1990 et 2050\n</div><div>2006 : stratégie nationale d’adaptation au changement climatique\n</div><div>2010 : Loi Grenelle 2 2011 : plan national d’adaptation au changement climatique\n</div><div>2014 : loi sur la transition énergétique pour la croissance verte\n</div><div><br></div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPV32OPZ2",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-z"
+        }
+      ]
+    },
+    "page12.html": {
+      "settings": {
+        "meta_descr": "Web Page Maker Description",
+        "title": "ARTICLE 9",
+        "order": 11
+      },
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            },
+            ".mbr-section-subtitle DIV": {
+              "text-align": "left"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-5\"><i><b>\n                    Augmentation du prix des carburants</b></i></h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-4\">\n                    <a href=\"http://www.prefectures-regions.gouv.fr/nouvelle-aquitaine/Actualites/Environnement/Pour-lutter-contre-le-changement-climatique-l-Etat-vous-accompagne\">http://www.prefectures-regions.gouv.fr/nouvelle-aquitaine/Actualites/Environnement/Pour-lutter-contre-le-changement-climatique-l-Etat-vous-accompagne</a><br><a href=\"http://www.prefectures-regions.gouv.fr/nouvelle-aquitaine/Actualites/Environnement/Pour-lutter-contre-le-changement-climatique-l-Etat-vous-accompagne\"><br></a><div>\n</div><div>plan de plus de 500 millions d’euros supplémentaires lancé par le Gouvernement pour accompagner les Français dans la transition écologique\n</div><div>augmentation du prix des carburants: passer à une mobilité plus propre et à sortir du tout-pétrole\n</div><div>\n</div><div><br></div></h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPVsZ7pCI",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-10"
+        }
+      ]
+    },
+    "page13.html": {
+      "settings": {
+        "meta_descr": "Website Builder Description",
+        "title": "ARTICLE 10",
+        "order": 12
+      },
+      "components": [
+        {
+          "alias": false,
+          "_styles": {
+            "padding-top": "(@paddingTop * 15px)",
+            "padding-bottom": "(@paddingBottom * 15px)",
+            "background-color": "@bgColor",
+            ".mbr-section-subtitle": {
+              "color": "#767676"
+            }
+          },
+          "_name": "content4",
+          "_customHTML": "<section class=\"mbr-section content4\" group=\"Article\" data-bg-video=\"{{bg.type == 'video' && bg.value.url}}\" mbr-class=\"{'mbr-parallax-background': bg.parallax}\">\n\n    <mbr-parameters>\n    <!-- Block parameters controls (Blue \"Gear\" panel) -->\n        <input type=\"range\" inline title=\"Top\" name=\"paddingTop\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n        <input type=\"range\" inline title=\"Bottom\" name=\"paddingBottom\" min=\"0\" max=\"8\" step=\"1\" value=\"4\">\n\n        <input type=\"checkbox\" title=\"Show Title\" name=\"showTitle\" checked>\n        <input type=\"checkbox\" title=\"Show Subtitle\" name=\"showSubtitle\" checked>\n        <input type=\"checkbox\" title=\"Show Buttons\" name=\"showButtons\">\n        <input type=\"color\" title=\"Background Color\" name=\"bgColor\" value=\"#ffffff\">\n    <!-- End block parameters -->\n    </mbr-parameters>\n\n    <div class=\"container\">\n        <div class=\"media-container-row\">\n            <div class=\"title col-12 col-md-8\">\n                <h2 mbr-if=\"showTitle\" class=\"align-center pb-3 mbr-fonts-style\" mbr-theme-style=\"display-2\">\n                    Article Titre avec Fond Uni\n                </h2>\n                <h3 mbr-if=\"showSubtitle\" data-app-selector=\".mbr-section-subtitle\" class=\"mbr-section-subtitle align-center mbr-light mbr-fonts-style\" mbr-theme-style=\"display-5\">\n                    Façonnez votre futur projet web avec une conception précise et affinez les fonctions codées.\n                </h3>\n                <div class=\"mbr-section-btn align-center py-4\" mbr-if=\"showButtons\" mbr-buttons mbr-theme-style=\"display-4\">\n                    <a class=\"btn btn-primary\" href=\"https://mobirise.co\">EN SAVOIR PLUS</a>\n                    <a class=\"btn btn-black-outline\" href=\"https://mobirise.co\">DÉMO LIVE</a>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>",
+          "_cid": "rKPVUtQxHr",
+          "_protectedParams": [],
+          "_global": false,
+          "_once": false,
+          "_params": {},
+          "_anchor": "content4-11"
+        }
+      ]
     }
   }
 }
