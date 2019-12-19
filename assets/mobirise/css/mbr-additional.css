@@ -712,7 +712,7 @@ section.lazy-placeholder:after {
 }
 .cid-rJYjsG3NWZ {
   padding-top: 60px;
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   background-color: #efefef;
 }
 .cid-rJYjsG3NWZ .mbr-section-subtitle {
@@ -1064,7 +1064,7 @@ section.lazy-placeholder:after {
   color: #767676;
 }
 .cid-rKPNjqtgEJ {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
@@ -1075,15 +1075,18 @@ section.lazy-placeholder:after {
   text-align: left;
 }
 .cid-rKPSXudRF7 {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
 .cid-rKPSXudRF7 .mbr-section-subtitle {
   color: #767676;
 }
+.cid-rKPSXudRF7 .mbr-section-subtitle DIV {
+  text-align: left;
+}
 .cid-rKPRwUEeep {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
@@ -1094,7 +1097,7 @@ section.lazy-placeholder:after {
   text-align: left;
 }
 .cid-rKPWUHGQgt {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
@@ -1105,15 +1108,18 @@ section.lazy-placeholder:after {
   text-align: left;
 }
 .cid-rKPXxIk8e6 {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
 .cid-rKPXxIk8e6 .mbr-section-subtitle {
   color: #767676;
 }
+.cid-rKPXxIk8e6 .mbr-section-subtitle DIV {
+  text-align: left;
+}
 .cid-rKPWb87yQy {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
@@ -1124,7 +1130,7 @@ section.lazy-placeholder:after {
   text-align: left;
 }
 .cid-rKPUhHbRLY {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
@@ -1135,7 +1141,7 @@ section.lazy-placeholder:after {
   text-align: left;
 }
 .cid-rKPV32OPZ2 {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
@@ -1146,7 +1152,7 @@ section.lazy-placeholder:after {
   text-align: left;
 }
 .cid-rKPVsZ7pCI {
-  padding-top: 60px;
+  padding-top: 120px;
   padding-bottom: 60px;
   background-color: #ffffff;
 }
