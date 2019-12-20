@@ -1170,3 +1170,10 @@ section.lazy-placeholder:after {
 .cid-rKPVUtQxHr .mbr-section-subtitle {
   color: #767676;
 }
+.cid-rLcHZITCtg {
+  background: linear-gradient(45deg, #55b4d4, #073b4c);
+}
+.cid-rLcHZITCtg .mbr-text,
+.cid-rLcHZITCtg .mbr-section-btn {
+  text-align: left;
+}
